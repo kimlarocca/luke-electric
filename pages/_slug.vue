@@ -1,11 +1,16 @@
 <template>
-  <div class="l-container">
-    <h1>
-      {{ story.name }}
-    </h1>
-    <v-spacer size="double" />
-    <div v-for="(item, index) in story.content" :key="index">
-      <storyblok-rich-text v-if="typeof item === 'object'" :content="item" />
+  <div class="grid">
+    <div class="image-fill">
+      <img :src="story.content.photo.filename" :alt="story.content.header" />
+    </div>
+    <div class="padding">
+      <h3>
+        {{ story.content.header }}
+      </h3>
+      <v-spacer size="double" />
+      <div v-for="(item, index) in story.content" :key="index">
+        <storyblok-rich-text v-if="typeof item === 'object'" :content="item" />
+      </div>
     </div>
   </div>
 </template>

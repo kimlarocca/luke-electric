@@ -1,7 +1,13 @@
 @import '~vue-evolve/src/assets/scss/main';
 @import 'settings';
-@import 'charts';
 @import 'colors';
+
+:root {
+  --yellow: #ecaf20;
+  --blue: #18336a;
+  --dark-gray: #575757;
+  --font-family: 'Hind', sans-serif;
+}
 
 hr {
   height: 0;
@@ -123,7 +129,6 @@ i {
 // table styles
 
 table {
-  @extend .apexchart;
   font-family: var(--font-family-primary);
   text-align: left;
 
@@ -147,88 +152,6 @@ table {
   }
 }
 
-.benchmark {
-  font-size: var(--font-size-3);
-}
-
-// accordion overrides
-
-.accordion-header-wrapper,
-.accordion-content {
-  font-family: var(--font-family-primary);
-}
-
-.accordion-header-wrapper {
-  font-weight: 600;
-  border-bottom: 1px solid var(--color-light-gray);
-  padding: 0 0 var(--space-2);
-}
-
-.accordion-header-active {
-  .accordion-header-wrapper {
-    border-bottom: 2px solid var(--color-light-gray);
-  }
-}
-
-.accordion-content .answer hr {
-  margin: var(--space-1) 0;
-}
-
-// error styles
-
-.error {
-  background-color: var(--color-red);
-  color: white;
-  font-weight: bold;
-  padding: var(--space-2);
-  text-transform: uppercase;
-  font-family: var(--font-family-primary);
-}
-
-// success styles
-
-.success {
-  color: var(--color-green);
-  font-weight: bold;
-}
-
-// filter styles
-
-select {
-  width: 100%;
-  @media all and (min-width: $large) {
-    min-width: 200px;
-    width: fit-content;
-    max-width: 100%;
-  }
-}
-
-.filters {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  @media all and (min-width: $large) {
-    flex-direction: row;
-    align-items: flex-end;
-  }
-}
-
-.filters select {
-  max-width: 250px;
-}
-
-.filters label {
-  margin-bottom: var(--space-4);
-  @media all and (min-width: $large) {
-    margin: 0 var(--space-4) 0 0;
-  }
-}
-
-.clear-filters {
-  height: var(--forms-input-height);
-  line-height: 2.25rem;
-}
-
 // layout transitions
 
 .layout-enter-active,
@@ -241,4 +164,115 @@ select {
 .layout-enter,
 .layout-leave-to {
   opacity: 0;
+}
+
+.spacer {
+  padding-top: 100px;
+}
+
+.padding {
+  padding: 50px;
+}
+
+.image-fill {
+  img {
+    object-fit: cover;
+    height: 100%;
+    width: fit-content;
+  }
+}
+
+.fancy-card {
+  color: white;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  background: var(--yellow);
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background: var(--blue);
+    transform: skewY(-5deg);
+  }
+
+  .content {
+    position: relative;
+    z-index: 10;
+    padding: 100px;
+
+    @media all and (max-width: 1000px) {
+      padding: 30px;
+    }
+  }
+
+  a,
+  a:visited,
+  a:active {
+    color: white;
+
+    &:hover {
+      color: white;
+    }
+  }
+}
+
+.fancy-grid {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: center;
+
+  a {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  div {
+    flex: 25%;
+  }
+
+  img {
+    transition: all linear 250ms;
+    width: 100%;
+    height: auto;
+  }
+
+  .fancy-card-content {
+    transition: all linear 250ms;
+    padding: 20px;
+    text-align: center;
+  }
+
+  div:hover {
+    .fancy-card-content,
+    img {
+      text-decoration: none;
+      opacity: 0.8;
+    }
+  }
+
+  @media all and (max-width: 1000px) {
+    div {
+      flex: 50%;
+    }
+  }
+  @media all and (max-width: 600px) {
+    div {
+      flex: 100%;
+    }
+  }
+}
+
+.grid {
+  display: grid;
+  grid-gap: 50px;
+  grid-template-columns: repeat(2, 1fr);
+  @media all and (max-width: 800px) {
+    grid-template-columns: repeat(1, 1fr);
+  }
 }

@@ -10,7 +10,7 @@ export default {
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'Nuxt 3 / Storyblok Boilerplate Starter Project',
+    title: 'Luke Electric | A Local Electrician In Hampton NJ & Clinton NJ',
     htmlAttrs: {
       lang: 'en'
     },
@@ -23,7 +23,7 @@ export default {
       {
         hid: 'description',
         name: 'description',
-        content: 'Nuxt 3 / Storyblok Boilerplate Starter Project'
+        content: 'Luke Electric | A Local Electrician In Hampton NJ & Clinton NJ'
       }
     ],
     script: [

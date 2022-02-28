@@ -1,65 +1,34 @@
 <template>
-  <div class="l-container">
+  <div>
     <v-spacer />
     <the-header layout="right">
       <template #logo>
-        <div class="logo">
-          <nuxt-link to="/" class="logo">
-            <img src="/logo.png" alt="logo" />
-            <h6>Your Company Name</h6>
-          </nuxt-link>
-        </div>
+        <nuxt-link to="/" class="logo">
+          <img src="/images/logo.png" alt="luke electric nj logo" />
+        </nuxt-link>
       </template>
       <template #menu>
         <the-menu
           layout="right"
-          :primary-nav="[
-            {
-              url: 'http://www.google.com',
-              text: 'Primary Link 1',
-            },
-            {
-              url: 'http://www.google.com',
-              text: 'Primary Link 2',
-            },
-            {
-              url: 'http://www.google.com',
-              text: 'Primary Link 3',
-            },
-          ]"
-          :secondary-nav="[
-            {
-              url: 'http://www.google.com',
-              text: 'Secondary Link 1',
-            },
-            {
-              url: 'http://www.google.com',
-              text: 'Secondary Link 2',
-            },
-            {
-              url: 'http://www.google.com',
-              text: 'Secondary Link 3',
-            },
-          ]"
+          :primary-nav="headerLinks"
+          :secondary-nav="footerLinks"
         >
           <template #logo>
-            <img src="/logo.png" alt="logo" />
-          </template>
-          <template #component>
-            <nuxt-link to="/contact">
-              <v-button> Contact Us </v-button>
+            <nuxt-link to="/" class="logo">
+              <img src="/images/logo.png" alt="luke electric nj logo" />
             </nuxt-link>
           </template>
+          <template #component> <i class="fa-light fa-bolt" /> </template>
         </the-menu>
       </template>
     </the-header>
-    <v-spacer size="triple" />
+    <v-spacer />
     <main>
       <nuxt keep-alive />
     </main>
-    <v-spacer size="triple" />
+    <v-spacer />
     <the-footer
-      company-name="Your Company Name"
+      company-name="Luke Electric"
       :navigation="[
         {
           url: 'tel:+1-908-246-8546',
@@ -76,7 +45,9 @@
       ]"
     >
       <template #logo>
-        <img src="/logo.png" alt="logo" />
+        <nuxt-link to="/" class="logo">
+          <img src="/images/logo.png" alt="luke electric nj logo" />
+        </nuxt-link>
       </template>
     </the-footer>
   </div>
@@ -87,44 +58,70 @@ export default {
   name: 'DefaultLayout',
   mode: 'out-in',
   components: {
-    TheFooter: () => import('vue-evolve/src/components/TheFooter'),
-    TheHeader: () => import('vue-evolve/src/components/TheHeader'),
-    TheMenu: () => import('vue-evolve/src/components/TheMenu'),
+    TheFooter: () => import("vue-evolve/src/components/TheFooter"),
+    TheHeader: () => import("vue-evolve/src/components/TheHeader"),
+    TheMenu: () => import("vue-evolve/src/components/TheMenu")
   },
+  data () {
+    return {
+      data: null
+    }
+  },
+  async fetch() {
+    this.data = await this.$storyapi.get(`cdn/stories/global`, {
+      version: 'published'
+    })
+  },
+  computed: {
+    footerLinks () {
+      return this.formatNavigationLinks(this.data?.data.story.content.footer_links)
+    },
+    headerLinks () {
+      return this.formatNavigationLinks(this.data?.data.story.content.header_links)
+    }
+  },
+  methods: {
+    formatNavigationLinks (array) {
+      if (array){
+        return array.map(item => {
+          const container = {};
+          if(item.link.linktype !== 'story') container.url = item.link.url
+          container.text = item.display_name
+          if(item.link.linktype === 'story') container.route = item.link.cached_url
+          container.type = item.link.linktype === 'story' ? 'nuxt' : 'external'
+          return container;
+        })
+      }
+      else {
+        return []
+      }
+    },
+  }
 }
 </script>
 
 <style lang="scss">
 .logo,
 .logo:active {
-  height: auto;
   border-bottom: none;
-  padding: 0;
-  display: flex;
-  align-items: center;
 
   &:hover {
     border-bottom: none;
   }
 
   img {
-    max-height: 35px;
-    margin-right: var(--space-2);
-  }
-
-  h5 {
-    color: var(--color-text);
+    max-height: 100px;
   }
 }
 
-header {
-  ul.secondary-navigation {
-    margin-left: 0;
+.header .menu {
+  ul {
+    margin: 0;
   }
-}
-
-footer {
-  border-top: solid 1px var(--color-light-gray);
+  .primary-navigation-item,
+  .secondary-navigation-item {
+    margin: 0 0 var(--space-2) 0;
+  }
 }
 
 footer .v-spacer {
