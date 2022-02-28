@@ -90,7 +90,7 @@
       background="/images/home2.jpg"
       title="Brighten Up Your Property With New Lights"
       description="Pick us for outdoor lighting installations in Hampton NJ or Clinton NJ"
-      to="ourdoor-lighting"
+      to="outdoor-lighting"
     />
     <div class="grid">
       <div class="image-fill">
