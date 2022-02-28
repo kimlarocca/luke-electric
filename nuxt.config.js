@@ -32,7 +32,8 @@ export default {
         crossorigin: true,
         async: true
       }
-    ]
+    ],
+    link: [{ rel: 'icon', type: 'image/png', href: '/logo.png' }]
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
