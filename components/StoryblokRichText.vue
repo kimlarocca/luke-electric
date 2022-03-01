@@ -35,7 +35,7 @@
       v-interpolation
       v-html="richText"
     />
-    <hr v-else-if="content.type === 'horizontal_rule'">
+    <hr v-else-if="content.type === 'horizontal_rule'" />
     <ul
       v-else-if="content.type === 'bullet_list'"
       v-interpolation
@@ -46,11 +46,7 @@
       v-interpolation
       v-html="richText"
     />
-    <p
-      v-else
-      v-interpolation
-      v-html="richText"
-    />
+    <div v-else v-interpolation v-html="richText" />
   </div>
 </template>
 

@@ -276,3 +276,9 @@ table {
     grid-template-columns: repeat(1, 1fr);
   }
 }
+
+// content card
+
+.content-card-content {
+  padding: 0 var(--space-6);
+}
