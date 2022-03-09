@@ -4,7 +4,7 @@
     <the-header layout="right">
       <template #logo>
         <nuxt-link to="/" class="logo">
-          <img src="/images/logo.png" alt="luke electric nj logo" />
+          <img src="/images/logo-new.png" alt="luke electric nj logo" />
         </nuxt-link>
       </template>
       <template #menu>
@@ -15,7 +15,7 @@
         >
           <template #logo>
             <nuxt-link to="/" class="logo">
-              <img src="/images/logo.png" alt="luke electric nj logo" />
+              <img src="/images/logo-new.png" alt="luke electric nj logo" />
             </nuxt-link>
           </template>
           <template #component> <i class="fa-light fa-bolt" /> </template>
@@ -46,7 +46,7 @@
     >
       <template #logo>
         <nuxt-link to="/" class="logo">
-          <img src="/images/logo.png" alt="luke electric nj logo" />
+          <img src="/images/logo-new.png" alt="luke electric nj logo" />
         </nuxt-link>
       </template>
     </the-footer>
